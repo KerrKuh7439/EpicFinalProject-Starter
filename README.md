@@ -30,6 +30,17 @@ Use the following branch names for each deliverable:
 
 See [docs/github-survival-guide.md](/docsgithub-survival-guide.md) for your workflow process.
 
+## Important Starter Code Notes
+
+You may add new classes and methods as needed, but you should NOT:
+
+- remove `Main.java`
+- remove `Game.java`
+- rename existing files
+- delete the starter structure
+
+Your job is to **extend the system**, not rebuild it.
+
 ### Submit your deliverable in Canvas
 
 Your Canvas submission must include:
