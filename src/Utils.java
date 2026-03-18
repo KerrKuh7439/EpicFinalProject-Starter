@@ -1,103 +1,66 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/*
----------------------------------------------------------
-STUDENT NOTES
----------------------------------------------------------
-
-This class contains helper methods used throughout the program.
-
-Utility classes are common in professional software projects.
-They store reusable tools that multiple classes may need.
-
-Examples:
-• input validation
-• formatting output
-• random number helpers
-• reusable calculations
-
-You MAY:
-• add additional helper methods
-• add new input validation methods
-• add formatting utilities
-
-You SHOULD:
-• keep methods reusable
-• avoid storing game-specific logic here
-
-You SHOULD NOT:
-• store player data here
-• store game state here
-• turn this into a second Game.java
-
-Think of this class as a toolbox for your program.
-
----------------------------------------------------------
-*/
-
 /**
- * Utils
+ * Utility methods used throughout the project.
  *
- * Utility class that provides helper methods used throughout
- * the application.
- *
- * All methods in this class are static, meaning they can be
- * used without creating a Utils object.
+ * Student Notes:
+ * - This class stores helper methods that can be reused in multiple places.
+ * - You may add more helper methods here as your project grows.
  */
 public class Utils {
 
     /**
-     * Safely reads an integer from the user.
+     * Prints a formatted console header.
      *
-     * This prevents the program from crashing if the user enters
-     * invalid input such as letters instead of numbers.
-     *
-     * @param input shared Scanner object
-     * @return valid integer entered by the user
+     * @param title the title to display
      */
-    public static int getIntInput(Scanner input) {
+    public static void printHeader(String title) {
+        System.out.println();
+        System.out.println("========================================");
+        System.out.println(title);
+        System.out.println("========================================");
+    }
 
-        while (!input.hasNextInt()) {
-            System.out.print("Invalid input. Please enter a number: ");
-            input.next();
+    /**
+     * Reads an integer safely from the user.
+     *
+     * @param input the Scanner object
+     * @param prompt the message shown to the user
+     * @return a valid integer
+     */
+    public static int readInt(Scanner input, String prompt) {
+        while (true) {
+            System.out.print(prompt);
+
+            try {
+                int value = input.nextInt();
+                input.nextLine(); // clear leftover newline
+                return value;
+            } catch (InputMismatchException e) {
+                input.nextLine(); // clear invalid input
+                System.out.println("Invalid input. Please enter a number.");
+            }
         }
-
-        int value = input.nextInt();
-        input.nextLine(); // clears newline from input buffer
-
-        return value;
     }
 
     /**
-     * Reads a line of text input from the user.
+     * Reads a non-empty string from the user.
      *
-     * @param input shared Scanner object
-     * @return text entered by the user
+     * @param input the Scanner object
+     * @param prompt the message shown to the user
+     * @return a non-empty string
      */
-    public static String getStringInput(Scanner input) {
-        return input.nextLine();
-    }
+    public static String readNonEmptyString(Scanner input, String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String value = input.nextLine().trim();
 
-    /**
-     * Generates a random number within a given range.
-     *
-     * This method may be useful later for gameplay events.
-     *
-     * @param min minimum value
-     * @param max maximum value
-     * @return random integer within range
-     */
-    public static int randomNumber(int min, int max) {
-        return (int)(Math.random() * (max - min + 1)) + min;
-    }
+            if (!value.isEmpty()) {
+                return value;
+            }
 
-    /**
-     * Prints a visual divider line for console formatting.
-     *
-     * Helps improve readability of console output.
-     */
-    public static void printDivider() {
-        System.out.println("---------------------------------");
+            System.out.println("Input cannot be empty. Please try again.");
+        }
     }
-
 }
