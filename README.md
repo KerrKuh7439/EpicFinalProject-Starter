@@ -66,7 +66,7 @@ week1-structure
 week2-core-actions
 week3-collections
 week4-game-logic
-week5-final-build
+final-build
 ```
 
 Do **not work directly in the `main` branch** until the final submission.
