@@ -1,191 +1,161 @@
 import java.util.Scanner;
 
-/*
----------------------------------------------------------
-STUDENT NOTES
----------------------------------------------------------
-
-This class controls the main flow of the program.
-
-It is responsible for:
-• displaying menus
-• reading user input
-• directing the program to the correct feature
-• controlling when the program starts and stops
-
-You MAY:
-• add new menu options
-• add new helper methods
-• expand the adventure logic
-• connect new classes you create
-
-You SHOULD:
-• keep methods small and organized
-• move feature-specific logic into new classes
-• keep menu handling readable
-
-You SHOULD NOT:
-• place your entire project in one method
-• duplicate player logic here if Player.java should handle it
-• remove the main program loop
-
-Think of this class as the "controller" of the application.
-It directs traffic between other classes.
-
----------------------------------------------------------
-*/
-
 /**
- * Game
+ * Controls the main game flow and menu system.
  *
- * Controls the main flow of the Java Final Project application.
- *
- * This class coordinates user interaction, menu navigation,
- * and communication between other project classes.
- *
- * In professional software systems this type of class is
- * often called a controller or application manager.
+ * Student Notes:
+ * - This class handles the main menu and user choices.
+ * - You will expand this class throughout the project.
+ * - Keep major game flow here, and move detailed logic into other classes later.
  */
 public class Game {
 
-    /** Scanner used for reading user input */
     private Scanner input;
-
-    /** Controls whether the application loop continues running */
+    private Player player;
     private boolean running;
 
-    /** Represents the player for the current session */
-    private Player player;
-
-    /** Represents the current game mode */
-    private GameMode mode;
-
     /**
-     * Constructor that initializes the game state.
-     *
-     * @param input shared Scanner used for keyboard input
+     * Constructs the game and prepares required resources.
      */
-    public Game(Scanner input) {
-        this.input = input;
-        this.running = true;
-
-        // Create the player object
-        this.player = new Player("Hero");
-
-        // Initialize the starting game mode
-        this.mode = new GameMode("Adventure");
+    public Game() {
+        input = new Scanner(System.in);
+        running = true;
     }
 
     /**
-     * Starts the main program loop.
-     *
-     * This method runs until the player chooses to exit.
+     * Starts the game loop.
      */
     public void start() {
-
-        displayWelcomeMessage();
+        Utils.printHeader("Welcome to the Java EPIC Final Project");
 
         while (running) {
-            showMenu();
-            int choice = Utils.getIntInput(input);
-            handleChoice(choice);
+            displayMenu();
+            int choice = Utils.readInt(input, "Enter your choice: ");
+
+            switch (choice) {
+                case 1:
+                    createPlayer();
+                    break;
+                case 2:
+                    chooseGameMode();
+                    break;
+                case 3:
+                    viewPlayer();
+                    break;
+                case 4:
+                    runPlaceholderAction();
+                    break;
+                case 5:
+                    exitGame();
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please select a valid menu option.");
+            }
         }
 
-        displayExitMessage();
+        input.close();
     }
 
     /**
-     * Displays the welcome message shown at program start.
+     * Displays the main menu.
      */
-    private void displayWelcomeMessage() {
-
-        Utils.printDivider();
-        System.out.println("   Welcome to the Java Adventure");
-        Utils.printDivider();
+    private void displayMenu() {
+        System.out.println();
+        System.out.println("========== MAIN MENU ==========");
+        System.out.println("1. Create Player");
+        System.out.println("2. Choose Game Theme");
+        System.out.println("3. View Player");
+        System.out.println("4. Start Placeholder Action");
+        System.out.println("5. Exit");
+        System.out.println("================================");
     }
 
     /**
-     * Displays the exit message when the program ends.
+     * Creates a player if one does not already exist.
      */
-    private void displayExitMessage() {
-        System.out.println("Game session ended.");
+    private void createPlayer() {
+        if (player != null) {
+            System.out.println("A player has already been created.");
+            return;
+        }
+
+        String name = Utils.readNonEmptyString(input, "Enter your player name: ");
+        player = new Player(name);
+
+        System.out.println("Player created successfully.");
+        System.out.println("Welcome, " + player.getName() + "!");
     }
 
     /**
-     * Displays the main menu options.
-     *
-     * Students will expand this menu as new features
-     * are added throughout the project.
+     * Allows the user to choose a theme for the project.
      */
-    private void showMenu() {
+    private void chooseGameMode() {
+        if (player == null) {
+            System.out.println("Create a player first before choosing a theme.");
+            return;
+        }
 
-        System.out.println("\n=== Main Menu ===");
-        System.out.println("1. Start Adventure");
-        System.out.println("2. View Player Stats");
-        System.out.println("3. View Game Mode");
-        System.out.println("4. Exit");
+        System.out.println();
+        System.out.println("Choose your theme:");
+        System.out.println("1. Fantasy Dungeon");
+        System.out.println("2. Cyber Hacker");
+        System.out.println("3. Space Explorer");
 
-        System.out.print("Choose an option: ");
-    }
-
-    /**
-     * Processes the player's menu selection.
-     *
-     * @param choice menu option selected by the user
-     */
-    private void handleChoice(int choice) {
+        int choice = Utils.readInt(input, "Enter your theme choice: ");
 
         switch (choice) {
-
             case 1:
-                startAdventure();
+                player.setGameMode(GameMode.FANTASY_DUNGEON);
                 break;
-
             case 2:
-                viewPlayerStats();
+                player.setGameMode(GameMode.CYBER_HACKER);
                 break;
-
             case 3:
-                viewGameMode();
+                player.setGameMode(GameMode.SPACE_EXPLORER);
                 break;
-
-            case 4:
-                exitGame();
-                break;
-
             default:
-                System.out.println("Invalid choice. Try again.");
+                System.out.println("Invalid theme choice.");
+                return;
         }
+
+        System.out.println("Theme selected: " + player.getGameMode().getDisplayName());
     }
 
     /**
-     * Placeholder method where students will implement
-     * their main gameplay logic later in the project.
+     * Displays current player information.
      */
-    private void startAdventure() {
+    private void viewPlayer() {
+        if (player == null) {
+            System.out.println("No player has been created yet.");
+            return;
+        }
 
-        System.out.println("\nAdventure mode starting...");
-        System.out.println("More gameplay features will be added in later weeks.");
+        Utils.printHeader("PLAYER INFO");
+        System.out.println("Name: " + player.getName());
+        System.out.println("Level: " + player.getLevel());
+        System.out.println("Theme: " + (player.getGameMode() == null
+                ? "Not selected"
+                : player.getGameMode().getDisplayName()));
     }
 
     /**
-     * Displays the player's statistics.
+     * Placeholder method students can replace with real features later.
      */
-    private void viewPlayerStats() {
-        player.displayStats();
+    private void runPlaceholderAction() {
+        if (player == null) {
+            System.out.println("Create a player first.");
+            return;
+        }
+
+        System.out.println(player.getName() + " is getting ready for future missions...");
+        System.out.println("This is a placeholder for later gameplay features.");
     }
 
     /**
-     * Displays information about the current game mode.
-     */
-    private void viewGameMode() {
-        mode.displayMode();
-    }
-
-    /**
-     * Ends the main program loop and exits the application.
+     * Ends the game loop.
      */
     private void exitGame() {
+        System.out.println("Exiting program. Thanks for playing.");
         running = false;
     }
 }
