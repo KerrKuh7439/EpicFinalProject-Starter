@@ -185,14 +185,14 @@ Submit the following in Canvas:
 
 Before submitting, confirm:
 
-☐ Starter code runs  
-☐ Main menu loop works  
-☐ Player can be created  
-☐ Theme can be selected  
-☐ Player information displays correctly  
-☐ Code compiles without errors  
-☐ At least 3 commits exist in the branch  
-☐ Screenshot saved in the repository  
+- [ ] Starter code runs  
+- [ ] Main menu loop works  
+- [ ] Player can be created  
+- [ ] Theme can be selected  
+- [ ] Player information displays correctly  
+- [ ] Code compiles without errors  
+- [ ] At least 3 commits exist in the branch  
+- [ ] Screenshot saved in the repository  
 
 ---
 
