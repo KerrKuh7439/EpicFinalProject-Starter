@@ -1,16 +1,15 @@
 /**
- * Parent class for all character types.
- * Students will extend this class in Week 3.
+ * Represents a character in the game.
+ *
+ * Programmers will expand this class in later weeks.
  */
-public abstract class Character {
+public class Character {
 
-    protected String name;
-    protected int health;
-    protected int power;
+    private String name;
+    private int power;
 
-    public Character(String name, int health, int power) {
+    public Character(String name, int power) {
         this.name = name;
-        this.health = health;
         this.power = power;
     }
 
@@ -18,13 +17,19 @@ public abstract class Character {
         return name;
     }
 
-    public int getHealth() {
-        return health;
-    }
-
     public int getPower() {
         return power;
     }
 
-    public abstract String useAbility();
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public String getSummary() {
+        return "Character: " + name + " | Power: " + power;
+    }
 }
