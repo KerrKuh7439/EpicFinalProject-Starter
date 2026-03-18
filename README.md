@@ -34,6 +34,11 @@ Follow these steps to begin your project:
 6. Begin implementing your weekly deliverables.
 
 ---
+# Weekly Instructions
+
+[Week 1 - Deliverable Instructions](docs/week1-deliverables.md)
+
+---
 
 # Weekly Workflow
 
@@ -170,6 +175,8 @@ Your final submission must include:
 - All required project features implemented  
 
 ---
+
+
 
 Build your project step-by-step, test frequently, and commit your progress regularly.
 
