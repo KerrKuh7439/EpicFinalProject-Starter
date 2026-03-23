@@ -116,6 +116,7 @@ Your Canvas submission must include:
 - GitHub repository link 
   - Screenshots of the program running should be available in the screenshots folder
   - Please name the screenshots appropriately
+    
 - Branch name used for the deliverable  
 - Short description of your progress  
 
