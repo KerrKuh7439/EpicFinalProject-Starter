@@ -113,11 +113,11 @@ Your job is to **extend the system**, not rebuild it.
 
 Your Canvas submission must include:
 
-• GitHub repository link 
+- GitHub repository link 
   - Screenshots of the program running should be available in the screenshots folder
   - Please name the screenshots appropriately
-• Branch name used for the deliverable  
-• Short description of your progress  
+- Branch name used for the deliverable  
+- Short description of your progress  
 
 Example submission:
 ```
