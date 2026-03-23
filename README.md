@@ -37,9 +37,13 @@ Follow these steps to begin your project:
 # Weekly Instructions
 
 [Week 1 - Deliverable Instructions](docs/week1-deliverables.md)
+
 [Week 2 - Deliverable Instructions](docs/week2-deliverables.md)
+
 [Week 3 - Deliverable Instructions](docs/week3-deliverables.md)
+
 [Week 4 - Deliverable Instructions](docs/week4-deliverables.md)
+
 [Week 5 - Deliverable Instructions](docs/final-build.md)
 
 ---
@@ -109,9 +113,10 @@ Your job is to **extend the system**, not rebuild it.
 
 Your Canvas submission must include:
 
-• GitHub repository link  
+• GitHub repository link 
+  - Screenshots of the program running should be available in the screenshots folder
+  - Please name the screenshots appropriately
 • Branch name used for the deliverable  
-• Screenshot of the program running  
 • Short description of your progress  
 
 Example submission:
